@@ -1,0 +1,43 @@
+.body{
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../utils/images/Background\ \(1\).png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.buttons{
+    height: 100%;
+    width: 40vw;
+    /* background-color: blue; */
+    position: absolute;
+   
+    display: flex;
+    display: inline-block;
+    justify-content: space-around;
+    align-items: center;
+}
+.butcon{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+.button{
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 50%;
+    height: 10%;
+    background-color: rgba(255,  255, 255, .6);
+    color: black;
+    border-radius: 30px;
+    display: inline;
+  
+}
