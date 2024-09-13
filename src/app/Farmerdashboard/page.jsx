@@ -36,8 +36,9 @@ function page() {
 //   </div>
 <>
 <div className={styles.appContainer}>
-      <Sidebar />
+      <Navbar/>
       <div className={styles.mainContent}>
+      <Sidebar />
         <Chart />
       </div>
     </div>

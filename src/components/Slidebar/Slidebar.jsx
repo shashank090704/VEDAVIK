@@ -4,9 +4,9 @@ import styles from './Slidebar.module.css';
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
-      <div className={styles.profileSection}>
+      {/* <div className={styles.profileSection}>
         <div className={styles.profileIcon}>#A001</div>
-      </div>
+      </div> */}
       <ul className={styles.menu}>
         <li className={styles.menuItem}>
           <button className={styles.button}>Find Contract</button>
