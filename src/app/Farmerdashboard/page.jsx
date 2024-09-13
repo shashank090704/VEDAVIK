@@ -1,8 +1,11 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import style from '../../Stylesheet/farmer.module.css';
+import styles from '../../Stylesheet/farmer.module.css';
 import Navbar from '@/components/Navbar/Navbar';
 import axios from 'axios';
+import Sidebar from '@/components/Slidebar/Slidebar';
+import Chart from '@/components/Chart/Chart';
+
 
 
 
@@ -20,17 +23,25 @@ function page() {
   } , [])
   return (
      
-  <div className={style.body}>
-       <Navbar/>
-       <div className={style.buttons}>
-             <div className={style.butcon}>
-            <button className={style.button}>  { farmd == "" ? "find " :  farmd.name}</button>
-            <button className={style.button}>Conmtact Management</button>
-            <button className={style.button}>Sequrity</button>
-            <button className={style.button}>Farmer Guide</button>
-            </div>  
-       </div>
-  </div>
+//   <div className={style.body}>
+//        <Navbar/>
+//        <div className={style.buttons}>
+//              <div className={style.butcon}>
+//             <button className={style.button}>  { farmd == "" ? "find " :  farmd.name}</button>
+//             <button className={style.button}>Conmtact Management</button>
+//             <button className={style.button}>Sequrity</button>
+//             <button className={style.button}>Farmer Guide</button>
+//             </div>  
+//        </div>
+//   </div>
+<>
+<div className={styles.appContainer}>
+      <Sidebar />
+      <div className={styles.mainContent}>
+        <Chart />
+      </div>
+    </div>
+</>
  
   )
 }

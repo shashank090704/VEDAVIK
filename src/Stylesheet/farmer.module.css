@@ -1,4 +1,4 @@
-.body{
+/* .body{
     background-color: white;
     height: 100vh;
     width: 100vw;
@@ -11,7 +11,7 @@
     height: 100%;
     width: 40vw;
     /* background-color: blue; */
-    position: absolute;
+    /* position: absolute;
    
     display: flex;
     display: inline-block;
@@ -22,7 +22,7 @@
     height: 100%;
     width: 100%;
     /* background-color: red; */
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -40,4 +40,19 @@
     border-radius: 30px;
     display: inline;
   
-}
+} */ 
+
+.appContainer {
+    display: flex;
+    height: 100vh;
+    background-image: url('/path-to-wheat-background.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

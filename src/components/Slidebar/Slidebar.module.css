@@ -1,0 +1,46 @@
+.sidebar {
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  
+  .profileSection {
+    margin-bottom: 20px;
+  }
+  
+  .profileIcon {
+    background-color: #777;
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menuItem {
+    margin: 15px 0;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
