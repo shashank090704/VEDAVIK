@@ -1,5 +1,7 @@
+import { connect } from "@/lib/dbconnect";
 import ordermodel from "@/models/order";
-import { connect } from "mongoose";
+import mongoose from "mongoose";
+
 import { NextResponse } from "next/server";
 
 connect()
@@ -9,15 +11,20 @@ export async function POST(request){
     try {
         const reqbody = await request.json();
         console.log(reqbody , "reqbody");
-        const { orderid, tempfarmid} = reqbody;
-       
-        const order = await ordermodel.findById(orderid);
-        const isPresent = order.includes(tempfarmid);
+        const { orderId, tempFarmId} = reqbody;
+       console.log( orderId , "orderid")
+       console.log(tempFarmId , "temp")
+        const order = await ordermodel.findById(orderId);
+        console.log(order , "order")
+        const isPresent = order.tempfarmid.includes(tempFarmId);
+        console.log(isPresent);
         if(isPresent){
             return NextResponse.json({messsage : "farmer alreday present"})
         }
-        order.tempfarmer.push(tempfarmid);
-        await order.save();
+
+       await order.tempfarmid.push(tempFarmId);
+       const savedorder = await order.save();
+        console.log(savedorder , "saved order")
         return NextResponse.json({message : "temp farmer save"})
         
     } catch (error) {

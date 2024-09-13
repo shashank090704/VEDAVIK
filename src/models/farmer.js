@@ -29,7 +29,14 @@ const farmerschema = new mongoose.Schema({
       city :{
         type : String,
         require : true
+      },
+      role : {
+        type : String ,
+        default : "Farmer",
+        required : true
+      
       }
+      
 
 
 });

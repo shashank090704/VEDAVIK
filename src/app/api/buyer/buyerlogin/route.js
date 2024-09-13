@@ -16,7 +16,7 @@ export async function POST(request) {
         if(!buyer){
           return NextResponse.redirect("/buyersignup");
         }
-        const validpass = bycrypt.compare( password , buyer.password);
+        const validpass = await bycrypt.compare( password , buyer.password);
         if( !validpass){
             return NextResponse.json({message : "wrong password"})
         }

@@ -1,22 +1,19 @@
 'use client'
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 
 
 function Order (props) {
-    const navigate = useNavigate();
-    const tempfarmid = props.tempfarmids;
-    const buyerid = props.buyerid;
-    const orderid = props.order._id;
-
-    // const senddata = async()=>{
-    //     const res =  await axios.post("/api/farmer/addtempfarmer" , {orderid, tempfarmid});
-    //     console.log(res);
-    // }
+   const router = useRouter();
+    const tempfarmId = props.tempfarmer;
+    const buyerId = props.order.buyerid;
+   
     const contact = async()=>{
-        // await senddata;
-        navigate('/Chating' , { state : { senderId : buyerid , receiverId : tempfarmid}})
+         console.log( tempfarmId , "receiver id")
+         console.log( buyerId , "sender id")
+        await localStorage.setItem('myData', JSON.stringify({ senderId: buyerId, receiverId: tempfarmId}));
+        router.push('/Chating')
     }
 
   return (

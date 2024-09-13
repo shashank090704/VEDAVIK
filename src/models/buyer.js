@@ -23,6 +23,12 @@ const buyerschema = new mongoose.Schema({
       city :{
         type : String,
         require : true
+      },
+      role : {
+        type : String ,
+        default : "Buyer",
+        required: true
+      
       }
 
 

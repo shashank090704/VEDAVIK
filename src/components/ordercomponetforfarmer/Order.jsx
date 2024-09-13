@@ -1,30 +1,42 @@
-'use client'
+
 import axios from 'axios';
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 
-function Order (props) {
-    const navigate = useNavigate();
-    const tempfarmid = props.farmerid;
-    const buyerid = props.order.buyerid;
-    const orderid = props.order._id;
 
-    const senddata = async()=>{
-        const res =  await axios.post("/api/farmer/addtempfarmer" , {orderid, tempfarmid});
-        console.log(res);
-    }
-    const contact = async()=>{
-        await senddata;
-        navigate('/Chating' , { state : { senderId : tempfarmid , receiverId : buyerid}})
-    }
+function Order(props) {
+    const router = useRouter();
+    const tempFarmId = props.farmerid;
+    const buyerId = props.order.buyerid;
+    const orderId = props.order._id;
+   
+    const sendData = async () => {
+        try {
+            const res = await axios.post("/api/farmer/addtempfarmer", { orderId, tempFarmId });
+            console.log(res);
+            return res;
+        } catch (error) {
+            console.error("Error sending data:", error);
+            throw error; 
+        }
+    };
 
-  return (
-    <>
-    
-    <button onClick={contact}> contact buyer</button>
-    </>
-  )
+    const contact = async () => {
+        try {
+            await sendData(); 
+           await localStorage.setItem('myData', JSON.stringify({ senderId: tempFarmId, receiverId: buyerId }));
+           router.push("/Chating")
+        } catch (error) {
+            console.error("Error navigating:", error);
+        }
+    };
+
+    return (
+        <>
+            <button onClick={contact}>Contact Buyer</button>
+        </>
+    );
 }
 
-export default Order
+export default Order;

@@ -1,97 +1,100 @@
-// pages/index.js
 
-import { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import { getSession } from 'next-auth/react';
-import dbConnect from '../lib/mongodb';
-import Message from '../models/Message';
-
-let socket;
-
-export default function Page({senderId , receiverId}) {
+'use client';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import styles from "../../Stylesheet/Chat.module.css";
+import Talk from "talkjs";
+export default function Page() {
+  const chatboxEl = useRef();
+  const router = useRouter();
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState("");
-  const [userId, setUserId] = useState(senderId);
-
+  const [messages, setMessages] = useState([]);
+  const [senderId, setSenderId] = useState();
+  const [receiverId, setReceiverId] = useState();
+  const [pusherInstance, setPusherInstance] = useState(null);
+ const [ senderdata , setsenderdata ] = useState();
+ const [ receiverdata , setreceiverdata ] = useState()
   useEffect(() => {
-    const initSocket = async () => {
-      // const session = await getSession();
-      // setUserId(session?.user?.id); // Assuming you have user authentication
+    const storedData = localStorage.getItem('myData');
+    if (storedData) {
+      const myObject = JSON.parse(storedData);
+      setSenderId(myObject.senderId);
+      setReceiverId(myObject.receiverId);
+    } else {
+      console.log('No object found in localStorage.');
+    }
+  }, []);
 
-      socket = io({
-        path: "/api/socket",
-      });
-
-      if (userId && receiverId) {
-        socket.emit("joinRoom", { senderId: userId, receiverId });
-      }
-
-      socket.on("newMessage", (msg) => {
-        setMessages((prevMessages) => [...prevMessages, msg]);
-      });
-
-      return () => {
-        socket.disconnect();
-      };
-    };
-
-    initSocket();
-  }, [userId, receiverId]);
-
-  const sendMessage = () => {
-    if (message.trim()) {
-      socket.emit("privateMessage", {
-        senderId: userId,
-        receiverId,
-        message,
-      });
-      setMessage(""); // Clear message input after sending
+  const getInitialMessages = async () => {
+    try {
+      const res = await axios.post("/api/initialmessages", { senderId, receiverId });
+      console.log( res.data , "getinitial message")
+      setMessages(res.data.data);
+      setreceiverdata(res.data.receiver)
+      setsenderdata(res.data.sender)
+      // console.log(res.data.data, "resdet initial message");
+    } catch (error) {
+      console.error("Error fetching initial messages", error);
     }
   };
 
+  useEffect(() => {
+    if (senderId && receiverId ) {
+      getInitialMessages();
+      console.log(messages, "messages");
+    }
+  }, [senderId, receiverId]);
+
+  useEffect(() => {
+    if (senderId && receiverId && senderdata && receiverdata) {
+      // console.log( senderdata , " sender data")
+      Talk.ready.then(() => {
+        // console.log("TalkJS is ready");
+        const currentUser = new Talk.User({
+          id: senderId,
+          // name : senderdata.name,  // Sender's MongoDB ObjectId
+          name :  `${senderdata.name} (${senderdata.role})`,
+          // name: sender.name,
+          // email: sender.email,
+          // photoUrl: sender.photoUrl || `https://api.adorable.io/avatars/285/${sender._id}.png`,
+          role: senderdata.role,
+        });
+
+        const otherUser = new Talk.User({
+          id: receiverId,  // Receiver's MongoDB ObjectId
+          // name: receiverdata.name,
+          name : `${receiverdata.name} (${receiverdata.role})`,
+          // email: receiver.email,
+          // photoUrl: receiver.photoUrl || `https://api.adorable.io/avatars/285/${receiver._id}.png`,
+          role: receiverdata.role
+        });
+
+        const session = new Talk.Session({
+          appId: "t58oG5hk",  // Replace with your TalkJS App ID
+          me: currentUser,
+        });
+
+        const conversationId = Talk.oneOnOneId(currentUser, otherUser);
+        const conversation = session.getOrCreateConversation(conversationId);
+
+        conversation.setParticipant(currentUser);
+        conversation.setParticipant(otherUser);
+
+        const chatbox = session.createChatbox(conversation);
+        chatbox.mount(chatboxEl.current);
+        console.log("Chatbox successfully mounted");
+      }).catch((error) => {
+        console.error("Error with TalkJS initialization:", error);
+      });
+    }
+  }, [senderId, receiverId , senderdata , receiverdata]);
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Private Chat</h1>
-      <div style={{ maxHeight: '300px', overflowY: 'scroll', border: '1px solid #ccc', padding: '10px' }}>
-        {messages.map((msg, index) => (
-          <p key={index}>
-            <strong>{msg.senderId === userId ? "You" : "Them"}:</strong> {msg.message}
-          </p>
-        ))}
-      </div>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            sendMessage();
-          }
-        }}
-      />
-      <button onClick={sendMessage}>Send</button>
+  
+    <>
+    <div style={{height : "100vh" , width : "100vw" , backgroundColor : "black" , display : "flex" , justifyContent : "center" , alignItems : "center"}}>
+    <div ref={chatboxEl} style={{ height: "500px", width: "50%" ,  background: "black"  }} />
     </div>
+    </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const receiverId = context.query.receiverId; // Pass the receiver's ID via URL
-  const senderId = context.req.session?.user?.id; // Assume you have a session for the logged-in user
-
-  await dbConnect();
-
-  // Fetch chat history between two users
-  const messages = await Message.find({
-    $or: [
-      { senderId, receiverId },
-      { senderId: receiverId, receiverId: senderId },
-    ],
-  }).sort({ createdAt: 1 });
-
-  return {
-    props: {
-      receiverId,
-      initialMessages: JSON.parse(JSON.stringify(messages)),
-    },
-  };
 }

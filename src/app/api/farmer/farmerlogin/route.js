@@ -16,7 +16,8 @@ export async function POST(request) {
         if(!farmer){
           return NextResponse.redirect("/Farmersignup");
         }
-        const validpass = bycrypt.compare( password , farmer.password);
+        const validpass = await bycrypt.compare( password , farmer.password);
+        console.log(validpass , "is valid");
         if( !validpass){
             return NextResponse.json({message : "wrong password"})
         }
