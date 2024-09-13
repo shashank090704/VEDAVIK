@@ -1,11 +1,12 @@
 .sidebar {
-    width: 250px;
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 40vw;
+    background-color: rgba(0, 0, 0, 0);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
+    height: 70vh;
   }
   
   .profileSection {
@@ -28,16 +29,24 @@
   
   .menuItem {
     margin: 15px 0;
+    height: 10%;
+    /* padding-bottom: 50px; */
+    margin-bottom: 50px;
   }
   
   .button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
     border: none;
     color: white;
     cursor: pointer;
     font-size: 16px;
+    color: black;
+    height: 60px;
+    border-radius: 20px;
+    border-radius: 40px;
+    font-weight: bold;
   }
   
   .button:hover {
