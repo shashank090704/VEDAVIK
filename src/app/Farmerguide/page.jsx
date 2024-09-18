@@ -70,7 +70,7 @@ function Page() {
         className={styles.form}
       >
         <a href="https://github.com/Vishesh-Pandey/chat-ai" target="_blank" rel="noopener noreferrer">
-          <h1 className={styles.title}>Chat AI</h1>
+          <h1 className={styles.title}>Sarthi</h1>
         </a>
         <textarea
           required
