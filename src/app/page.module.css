@@ -1,0 +1,96 @@
+/* Full page container with contract farming background */
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url(../utils/images/Vrishti.png);
+  /* Split background with contract farming theme */
+  /* background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+              url('/path/to/contract-farming-background.jpg') center center / cover no-repeat; */
+background-size:cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+/* Smooth background movement for a more dynamic appearance */
+
+
+/* Website Title */
+.title {
+  position: absolute;
+  top: 2rem;
+  width: 100%;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #2c3e50;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  
+  opacity: 0;
+}
+
+/* Farmer and Buyer positions */
+
+
+/* Buttons Container */
+.buttonsContainer {
+  position: absolute;
+  left: 140px;
+  bottom:180px;
+  width: 100%;
+  display: flex;
+  
+  gap: 3rem;
+
+}
+
+
+
+/* Farmer Login Button */
+.farmerLogin {
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.farmerLogin:hover {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Buyer Login Button */
+.buyerLogin {
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buyerLogin:hover {
+  background: linear-gradient(135deg, #2980b9, #1e6f96);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+

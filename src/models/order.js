@@ -42,6 +42,15 @@ const orderschema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'farmer'
   }]
+  ,
+  tempamount : {
+    type : String
+  },
+  date:{
+    type : Date,
+    default : Date.now()
+  }
+
 
 });
 const order = mongoose.models.order || mongoose.model( 'order', orderschema);

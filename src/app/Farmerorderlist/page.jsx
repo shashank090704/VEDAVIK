@@ -3,7 +3,9 @@
 import Order from '@/components/ordercomponetforfarmer/Order';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import styles from '../../Stylesheet/farmerorderlist.module.css'
+import Navbar from '@/components/Navbar/Navbar';
+import Searchbar from '@/components/Searchbar';
 function Page() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -47,14 +49,30 @@ function Page() {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
-            {orders.map((order) => (
-                <React.Fragment key={order._id}> {/* Adjust the key according to your order object structure */}
-                    <Order order={order} farmerid={farmid} />
-                    <h1>hi</h1>
-                </React.Fragment>
-            ))}
+        // <div>
+        //     {orders.map((order) => (
+        //         <React.Fragment key={order._id}> {/* Adjust the key according to your order object structure */}
+        //             <Order order={order} farmerid={farmid} />
+        //             <h1>hi</h1>
+        //         </React.Fragment>
+        //     ))}
+        // </div>
+        <div className={styles.body}>
+        <Navbar/>
+        <div className={styles.bodyone}>
+        <Searchbar />
+        <div className={styles.orderbox}>
+            <div className={styles.orderlistcontainer}>  {orders.map((order) => (
+            <React.Fragment key={order._id}> 
+                <Order order={order} farmerid={farmid} />
+
+               
+            </React.Fragment>
+
+        ))}</div>
         </div>
+        </div>
+    </div>
     );
 }
 

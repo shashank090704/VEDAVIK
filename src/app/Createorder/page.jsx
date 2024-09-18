@@ -25,6 +25,14 @@ const Page = () => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
     const res = await axios.post("/api/buyer/createorder" , formData)
+    alert(" Your order had been generated")
+    setFormData({
+      cropName: '',
+    duration: '',
+    amountPerKg: '',
+    quantity: '',
+    city: '',
+    })
     console.log(res);
   };
 

@@ -1,36 +1,18 @@
-// 'use client'
-// import React, { useEffect, useState } from 'react'
-// import Navbar from '@/components/Navbar/Navbar'
 
-// function page() {
-//     const [ buyerd , setbuyd] = useState("");
-//   const getbuyd = async()=>{
-//           console.log("get data buyer")
-//           const res = await axios.post("/api/buyer/getbuyerdata");
-//         console.log(res.data , 'dash bodard');
-//           await setbuyd(res.data.data);
-//           console.log(buyerd , "farmd")
-//   }
-//   useEffect(()=>{
-//           console.log("hellow");
-//           console.log(buyerd)
-//            getbuyd();
-//   } , [buyerd])
-//   return (
-//     <>
-//     <div>{buyerd.name} buyer</div>
-//     <Navbar/>
-//     </>
-//   )
-// }
-
-// export default page
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+// import Navbar from '@/components/Navbar/Navbar';
+// import axios from 'axios';  // Ensure axios is imported
+import React, { useContext, useEffect, useState } from 'react'
+import styles from '../../Stylesheet/buyer.module.css';
 import Navbar from '@/components/Navbar/Navbar';
-import axios from 'axios';  // Ensure axios is imported
+import axios from 'axios';
+import Buyers from '@/components/Slidebar/Buyers';
+import Chart from '@/components/Chart/Chart';
+import Order from '@/components/ordercomponentforbuyer/Order';
+
 
 function Page() {  // Component names should be caepitalized
     const [buyerd, setbuyerd] = useState("");  // Initialize with null or an empty object
@@ -52,9 +34,19 @@ function Page() {  // Component names should be caepitalized
     }, []);  // Empty dependency array ensures this runs only once after the initial render
 
     return (
+        // <>
+        //     <div>{buyerd != "" ? buyerd.phonenumber : "buyer name"}</div>
+        //     <Navbar />
+        // </>
         <>
-            <div>{buyerd != "" ? buyerd.phonenumber : "buyer name"}</div>
-            <Navbar />
+        <div className={styles.appContainer}>
+              <Navbar/>
+              <div className={styles.mainContent}>
+              <Buyers />
+                  <Chart /> 
+              
+              </div>
+            </div>
         </>
     );
 }

@@ -69,13 +69,17 @@
   .answerContainer {
     width: 100%;
     max-width: 33.3333%;
-    text-align: center;
+    /* text-align: center; */
     border-radius: 0.5rem;
     background: #ffffff;
     margin: 1rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s;
     color: black;
+    max-height: 50vw;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 10px;
   }
   
   .answerContainer:hover {

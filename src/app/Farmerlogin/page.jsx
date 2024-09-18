@@ -32,39 +32,74 @@ function page(){
   };
 
   return (
-    <div className={style.body}>
-    <div className={style.loginformcontainer}>
-      <h1 style={{marginBottom : '20px'}}>Farmer Login</h1>
-      <form onSubmit={handleSubmit}>
+    // <div className={style.body}>
+    // <div className={style.loginformcontainer}>
+    //   <h1 style={{marginBottom : '20px'}}>Farmer Login</h1>
+    //   <form onSubmit={handleSubmit}>
   
-        <div className={style.formgroup}>
-          <label htmlFor="phone">Phone Number:</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={style.formgroup}>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
-      </form>
-      <Link href="../Farmersignup">Don't have an account ?</Link>
-    </div>
+    //     <div className={style.formgroup}>
+    //       <label htmlFor="phone">Phone Number:</label>
+    //       <input
+    //         type="text"
+    //         id="phone"
+    //         name="phone"
+    //         value={formData.phone}
+    //         onChange={handleChange}
+    //         required
+    //       />
+    //     </div>
+    //     <div className={style.formgroup}>
+    //       <label htmlFor="password">Password:</label>
+    //       <input
+    //         type="password"
+    //         id="password"
+    //         name="password"
+    //         value={formData.password}
+    //         onChange={handleChange}
+    //         required
+    //       />
+    //     </div>
+    //     <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
+    //   </form>
+    //   <Link href="../Farmersignup">Don't have an account ?</Link>
+    // </div>
     
-    </div>
+    // </div>
+    <div className={style.body}>
+    <div className={style.left}></div>
+    <div className={style.right}>
+  <div className={style.loginformcontainer}>
+    <h1 style={{marginBottom : '20px'}}>Farmer Login</h1>
+    <form onSubmit={handleSubmit}>
+
+      <div className={style.formgroup}>
+        <label htmlFor="phone">Phone Number:</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className={style.formgroup}>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
+    </form>
+    <Link href="../Farmersignup">Don't have an account ?</Link>
+  </div>
+  </div>
+  </div>
   );
 };
 

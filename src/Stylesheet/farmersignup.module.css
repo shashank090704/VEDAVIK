@@ -3,17 +3,58 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content:center;
+  align-items:center;
+}
+.left{
+  height:95vh;
+  width:40vw;
+  background-image:url("../utils/images/img1.jpg");
+  background-position:center;
+
+  background-size:100% 100%;
+  animation:changeImage 14s linear infinite;
+  background-size:cover;
+  border-radius:15px;
+}
+@keyframes changeImage{
+0%{
+  background-image:url(../utils/images/img1.jpg);
+}
+25%{
+  background-image:url(../utils/images/img2.jpg);
+}
+50%{
+  background-image:url(../utils/images/img3.jpg);
+}
+75%{
+  background-image:url(../utils/images/img4.jpg);
+}
+100%{
+  background-image:url(../utils/images/image5.jpg);
+}
+}
+.right{
+  height:100vh;
+  width:50vw;
+  background-color:black;
+  
+  
 }
 .loginformcontainer {
-    width: 100%;
+    width: 50%;
     max-width: 500px;
+    position:absolute;
+    top:100px;
+    right:150px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional border */
   }
   
   .formgroup {

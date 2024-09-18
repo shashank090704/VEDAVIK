@@ -45,7 +45,8 @@
 .appContainer {
     display: flex;
     height: 100vh;
-    background-image: url(../utils/images/Background\ \(1\).png);
+    background-image: url(../utils/imageS/vineyard-428041.jpg);
+
     background-size: cover;
     background-position: center;
   }
