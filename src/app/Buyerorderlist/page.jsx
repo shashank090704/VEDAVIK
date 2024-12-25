@@ -136,8 +136,9 @@ function Page() {
     if (error) return <div>{error}</div>;
 
     return (
+        <div><Navbar/>
         <div className={styles.body}>
-        <Navbar/>
+        
         <div className={styles.bodyone}>
        
         <div className={styles.orderbox}>
@@ -164,6 +165,7 @@ function Page() {
             </div>
         </div>
         </div>
+    </div>
     </div>
     );
 }

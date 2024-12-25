@@ -57,8 +57,10 @@ function Page() {
         //         </React.Fragment>
         //     ))}
         // </div>
+        <div className={styles.bo}>
+        <Navbar></Navbar>
         <div className={styles.body}>
-        <Navbar/>
+        
         <div className={styles.bodyone}>
         <Searchbar />
         <div className={styles.orderbox}>
@@ -72,6 +74,7 @@ function Page() {
         ))}</div>
         </div>
         </div>
+    </div>
     </div>
     );
 }

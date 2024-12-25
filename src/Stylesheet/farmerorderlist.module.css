@@ -1,3 +1,10 @@
+.bo{
+    width: 100vw;
+    height: 100vh;
+    /* overflow: hidden; */
+    scrollbar-width:none;
+    scroll-behavior: smooth;
+}
 .body{
     height:100vh;
     width:100vw;
@@ -6,6 +13,7 @@
     background-repeat: no-repeat;
     display:flex;
     overflow-y: hidden;
+  
     
 }
 .orderbox{
@@ -15,5 +23,7 @@
     scroll-behavior: smooth;
     height:90vh;
     margin-top:50px;
+    
+    
 
 }
