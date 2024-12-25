@@ -155,7 +155,7 @@ const HomePage = () => {
         transition={{ delay: 1.2, duration: 1 }}
         className={styles.partners}
       >
-        <h3>Trusted by:</h3>
+        <h3 style={{color : "gray"}}>Trusted by</h3>
         <motion.div
           className={styles.partnerLogos}
           initial="hidden"

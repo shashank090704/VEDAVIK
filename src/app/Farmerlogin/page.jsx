@@ -32,49 +32,18 @@ function page(){
   };
 
   return (
-    // <div className={style.body}>
-    // <div className={style.loginformcontainer}>
-    //   <h1 style={{marginBottom : '20px'}}>Farmer Login</h1>
-    //   <form onSubmit={handleSubmit}>
-  
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="phone">Phone Number:</label>
-    //       <input
-    //         type="text"
-    //         id="phone"
-    //         name="phone"
-    //         value={formData.phone}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="password">Password:</label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         name="password"
-    //         value={formData.password}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
-    //   </form>
-    //   <Link href="../Farmersignup">Don't have an account ?</Link>
-    // </div>
-    
-    // </div>
-    <div className={style.body}>
-    <div className={style.left}></div>
-    <div className={style.right}>
-  <div className={style.loginformcontainer}>
-    <h1 style={{marginBottom : '20px'}}>Farmer Login</h1>
+   
+    <div className={style.bodyContainerDark}>
+    <div className={style.leftContainerDark}></div>
+    <div className={style.rightContainerDark}>
+      <div className={style.loginFormContainerDark}>
+    <h1 className={style.loginTitleDark}>Farmer Login</h1>
     <form onSubmit={handleSubmit}>
 
-      <div className={style.formgroup}>
-        <label htmlFor="phone">Phone Number:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
         <input
+         className={style.formInputDark}
           type="text"
           id="phone"
           name="phone"
@@ -83,9 +52,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="password">Password:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="password">Password:</label>
         <input
+          className={style.formInputDark}
           type="password"
           id="password"
           name="password"
@@ -94,9 +64,14 @@ function page(){
           required
         />
       </div>
-      <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
+      <button
+              className={style.submitButtonDark}
+              type="submit"
+            >
+              Submit
+            </button>
     </form>
-    <Link href="../Farmersignup">Don't have an account ?</Link>
+    <Link className={style.signupLinkDark} href="../Farmersignup">Don't have an account ?</Link>
   </div>
   </div>
   </div>

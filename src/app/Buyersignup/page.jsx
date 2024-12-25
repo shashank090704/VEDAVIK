@@ -33,80 +33,16 @@ function page(){
   };
 
   return (
-    // <div className={style.body}>
-    // <div className={style.loginformcontainer}>
-    //   <h1 style={{marginBottom : '20px'}}>Buyer Signup</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="name">Name:</label>
-    //       <input
-    //         type="text"
-    //         id="name"
-    //         name="name"
-    //         value={formData.name}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="phone">Phone Number:</label>
-    //       <input
-    //         type="text"
-    //         id="phone"
-    //         name="phone"
-    //         value={formData.phone}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="email">Email:</label>
-    //       <input
-    //         type="email"
-    //         id="email"
-    //         name="email"
-    //         value={formData.email}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="city">City:</label>
-    //       <input
-    //         type="text"
-    //         id="city"
-    //         name="city"
-    //         value={formData.city}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="password">Password:</label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         name="password"
-    //         value={formData.password}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <button style={{marginBottom:'7px'}} className={style.button} type="submit">Submit</button>
-    //   </form>
-    //   <Link href="../Buyerlogin">Already have an account ?</Link>
-    // </div>
-    // </div>
-    <div className={style.body}>
-    <div className={style.left}>
-    </div>
-    <div className={style.right}>
-    <div className={style.loginformcontainer}>
-    <h1 style={{marginBottom : '20px'}}>Buyer Signup</h1>
+    <div className={style.bodyContainerDark}>
+   <div className={style.leftContainerDark}></div>
+   <div className={style.rightContainerDark}>
+   <div className={style.loginFormContainerDark}>
+    <h1 className={style.loginTitleDark}>Buyer Signup</h1>
     <form onSubmit={handleSubmit}>
-      <div className={style.formgroup}>
-        <label htmlFor="name">Name:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="name">Name:</label>
         <input
+           className={style.formInputDark}
           type="text"
           id="name"
           name="name"
@@ -115,9 +51,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="phone">Phone Number:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="phone"
           name="phone"
@@ -126,9 +63,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="email">Email:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="email">Email:</label>
         <input
+        className={style.formInputDark}
           type="email"
           id="email"
           name="email"
@@ -137,9 +75,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="city">City:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="city">City:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="city"
           name="city"
@@ -148,9 +87,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="password">Password:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="password">Password:</label>
         <input
+          className={style.formInputDark}
           type="password"
           id="password"
           name="password"
@@ -159,13 +99,17 @@ function page(){
           required
         />
       </div>
-      <button style={{marginBottom:'7px'}} className={style.button} type="submit">Submit</button>
+      <button
+              className={style.submitButtonDark}
+              type="submit"
+            >
+              Submit
+            </button>
     </form>
-    <Link href="../Buyerlogin">Already have an account ?</Link>
-  </div>
+    <Link className={style.signupLinkDark} href="../Buyerlogin">Already have an account ?</Link>
     </div>
-  
-  </div>
+      </div>
+    </div>
 
   );
 };

@@ -111,15 +111,16 @@ function page(){
     //   <Link href="../Farmerlogin">Already have an account ?</Link>
     // </div>
     // </div>
-    <div className={style.body}>
-    <div className={style.left}></div>
-    <div className={style.right}>
-  <div className={style.loginformcontainer}>
-    <h1 style={{marginBottom : '20px'}}>Farmer Signup</h1>
+    <div className={style.bodyContainerDark}>
+    <div className={style.leftContainerDark}></div>
+    <div className={style.rightContainerDark}>
+    <div className={style.loginFormContainerDark}>
+    <h1 className={style.loginTitleDark}>Farmer Signup</h1>
     <form onSubmit={handleSubmit}>
-      <div className={style.formgroup}>
-        <label htmlFor="name">Name:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="name">Name:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="name"
           name="name"
@@ -128,9 +129,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="phone">Phone Number:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="phone"
           name="phone"
@@ -139,9 +141,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="area">Area of Farm:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="area">Area of Farm:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="area"
           name="area"
@@ -150,9 +153,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="email">Email:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="email">Email:</label>
         <input
+        className={style.formInputDark}
           type="email"
           id="email"
           name="email"
@@ -161,9 +165,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="city">City:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="city">City:</label>
         <input
+        className={style.formInputDark}
           type="text"
           id="city"
           name="city"
@@ -172,9 +177,10 @@ function page(){
           required
         />
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="password">Password:</label>
+      <div className={style.formGroupDark}>
+        <label className={style.formLabelDark} htmlFor="password">Password:</label>
         <input
+         className={style.formInputDark}
           type="password"
           id="password"
           name="password"
@@ -183,9 +189,15 @@ function page(){
           required
         />
       </div>
-      <button style={{marginBottom:'7px'}} className={style.button} type="submit">Submit</button>
+      <button
+              className={style.submitButtonDark}
+              type="submit"
+            >
+              Submit
+            </button>
+  
     </form>
-    <Link href="../Farmerlogin">Already have an account ?</Link>
+    <Link className={style.signupLinkDark}  href="../Farmerlogin">Already have an account ?</Link>
   </div>
   </div>
   </div>

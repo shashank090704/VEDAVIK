@@ -1,15 +1,15 @@
-'use client'
+'use client';
+
 import React, { useState } from 'react';
-import style from '../../Stylesheet/farmersignup.module.css'
+import style from '../../Stylesheet/farmersignup.module.css';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-function page(){
+
+function BuyerLoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-   
     phone: '',
-
     password: ''
   });
 
@@ -21,88 +21,66 @@ function page(){
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    const res = await axios.post("/api/buyer/buyerlogin" , formData);
-    console.log(res)
-    if(res){
-    router.push("/Buyerdashboard");
+    try {
+      console.log('Form submitted:', formData);
+      const res = await axios.post('/api/buyer/buyerlogin', formData);
+      console.log(res);
+      if (res.status === 200) {
+        router.push('/Buyerdashboard');
+      } else {
+        alert('Invalid credentials!');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert('An error occurred. Please try again.');
     }
-    // Add form submission logic here
   };
 
   return (
-    // <div className={style.body}>
-    // <div className={style.loginformcontainer}>
-    //   <h1 style={{marginBottom : '20px'}}>Buyer Login</h1>
-    //   <form onSubmit={handleSubmit}>
-  
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="phone">Phone Number:</label>
-    //       <input
-    //         type="text"
-    //         id="phone"
-    //         name="phone"
-    //         value={formData.phone}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <div className={style.formgroup}>
-    //       <label htmlFor="password">Password:</label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         name="password"
-    //         value={formData.password}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //     </div>
-    //     <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
-    //   </form>
-    //   <Link href="../Buyersignup">Don't have an account ?</Link>
-    // </div>
-    
-    // </div>
-    <div className={style.body}>
-    <div className={style.left}></div>
-    <div className={style.right}>
-  <div className={style.loginformcontainer}>
-    <h1 style={{marginBottom : '20px'}}>Buyer Login</h1>
-    <form onSubmit={handleSubmit}>
-
-      <div className={style.formgroup}>
-        <label htmlFor="phone">Phone Number:</label>
-        <input
-          type="text"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
+    <div className={style.bodyContainerDark}>
+      <div className={style.leftContainerDark}></div>
+      <div className={style.rightContainerDark}>
+        <div className={style.loginFormContainerDark}>
+          <h1 className={style.loginTitleDark}>Buyer Login</h1>
+          <form onSubmit={handleSubmit}>
+            <div className={style.formGroupDark}>
+              <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
+              <input
+                className={style.formInputDark}
+                type="text"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={style.formGroupDark}>
+              <label className={style.formLabelDark} htmlFor="password">Password:</label>
+              <input
+                className={style.formInputDark}
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button
+              className={style.submitButtonDark}
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+          <Link className={style.signupLinkDark} href="../Buyersignup">Don't have an account?</Link>
+        </div>
       </div>
-      <div className={style.formgroup}>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button style={{marginBottom:'8px'}} className={style.button} type="submit">Submit</button>
-    </form>
-    <Link href="../Buyersignup">Don't have an account ?</Link>
-  </div>
-  </div>
-  
-  </div>
+    </div>
   );
-};
+}
 
-export default page;
+export default BuyerLoginPage;
