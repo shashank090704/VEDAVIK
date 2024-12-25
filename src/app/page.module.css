@@ -1,96 +1,146 @@
-/* Full page container with contract farming background */
-
+/* Container */
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+  background: #121212;
+  color: white;
+  font-family: 'Poppins', sans-serif;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-image: url(../utils/images/Vrishti.png);
-  /* Split background with contract farming theme */
-  /* background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
-              url('/path/to/contract-farming-background.jpg') center center / cover no-repeat; */
-background-size:cover;
-background-repeat: no-repeat;
-background-position: center;
 }
 
-/* Smooth background movement for a more dynamic appearance */
-
-
-/* Website Title */
-.title {
-  position: absolute;
-  top: 2rem;
-  width: 100%;
-  text-align: center;
-  font-size: 4rem;
-  font-weight: bold;
-  color: #2c3e50;
-  font-family: 'Poppins', sans-serif;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-  
-  opacity: 0;
-}
-
-/* Farmer and Buyer positions */
-
-
-/* Buttons Container */
-.buttonsContainer {
-  position: absolute;
-  left: 140px;
-  bottom:180px;
-  width: 100%;
+/* Navigation Bar */
+.navbar {
   display: flex;
-  
-  gap: 3rem;
-
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: transparent;
 }
 
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
 
-/* Farmer Login Button */
-.farmerLogin {
-  padding: 1rem 2.5rem;
-  font-size: 1.3rem;
-  background: linear-gradient(135deg, #f39c12, #e67e22);
-  border: none;
+.navLinks a {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 1rem;
+}
+
+.navLinks a:hover {
   color: white;
-  border-radius: 10px;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-  
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.farmerLogin:hover {
-  background: linear-gradient(135deg, #e67e22, #d35400);
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.authButtons {
+  display: flex;
+  gap: 1rem;
 }
 
-/* Buyer Login Button */
-.buyerLogin {
-  padding: 1rem 2.5rem;
-  font-size: 1.3rem;
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  border: none;
+.login {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.signup {
+  background: #3498db;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   color: white;
-  border-radius: 10px;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
-.buyerLogin:hover {
-  background: linear-gradient(135deg, #2980b9, #1e6f96);
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.signup:hover {
+  background: #2980b9;
 }
 
+/* Hero Section */
+.heroSection {
+  text-align: center;
+  margin-top: 5rem;
+  padding: 0 2rem;
+}
 
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
+.title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.ctaFarmer,
+.ctaBuyer {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ctaFarmer {
+  background: #27ae60;
+}
+
+.ctaBuyer {
+  background: #3498db;
+}
+
+.ctaFarmer:hover {
+  background: #219150;
+}
+
+.ctaBuyer:hover {
+  background: #2980b9;
+}
+
+/* Partners Section */
+.partners {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 0 2rem;
+}
+
+.partners h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.partnerLogos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.partnerLogos img {
+  width: 100px;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partnerLogos img:hover {
+  filter: grayscale(0%);
+}
