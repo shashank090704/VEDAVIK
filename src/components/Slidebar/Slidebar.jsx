@@ -1,38 +1,23 @@
 import React from 'react';
 import styles from './Slidebar.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-import{faFileContract}from '@fortawesome/free-solid-svg-icons';
-import{faShield}from '@fortawesome/free-solid-svg-icons';
-import{faCloud}from '@fortawesome/free-solid-svg-icons';
-
 
 const Sidebar = () => {
- 
   return (
-    <div className={styles.sidebar}>
-     
-      <ul className={styles.menu}>
+    <div className={styles.sidebarContainer}>
+      <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-        <a href="/Farmerorderlist"><button className={styles.button}>Find Contract
-        <div className={styles.search}></div>
-          
-        </button></a>
-        </li>
-        </ul>
-        <div className='others'>
-          <ul className={styles.menu}>
-        <li className={styles.menuItem}>
-          <a href='/Farmercontract'><button className={styles.button}> Contract Management <div className={styles.Cmanage}></div></button></a>
+          <a href='/Farmerorderlist'><button className={styles.menuButton}>Find Contract</button> </a>
         </li>
         <li className={styles.menuItem}>
-          <button className={styles.button}>Security<div className={styles.Security}></div></button>
+          <button className={styles.menuButton}>Contract Management</button>
         </li>
         <li className={styles.menuItem}>
-        <a href='/Farmerguide'><button className={styles.button}>Farming Guide<div className={styles.Fguide}></div></button></a> 
+          <button className={styles.menuButton}>Security</button>
+        </li>
+        <li className={styles.menuItem}>
+         <a href='/Farmerguide'> <button className={styles.menuButton}>Farming Guide</button> </a>
         </li>
       </ul>
-      </div>
     </div>
   );
 };

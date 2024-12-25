@@ -1,12 +1,13 @@
 
 
 'use client';
-
+ 
 // import React, { useEffect, useState } from 'react';
 // import Navbar from '@/components/Navbar/Navbar';
 // import axios from 'axios';  // Ensure axios is imported
 import React, { useContext, useEffect, useState } from 'react'
-import styles from '../../Stylesheet/buyer.module.css';
+// import styles from '../../Stylesheet/buyer.module.css';
+import styles from './../../Stylesheet/farmer.module.css';
 import Navbar from '@/components/Navbar/Navbar';
 import axios from 'axios';
 import Buyers from '@/components/Slidebar/Buyers';
@@ -39,11 +40,17 @@ function Page() {  // Component names should be caepitalized
         //     <Navbar />
         // </>
         <>
-        <div className={styles.appContainer}>
+        <div className={styles.dashboardContainer}>
               <Navbar/>
-              <div className={styles.mainContent}>
+              <div className={styles.dashboardContent}>
               <Buyers />
-                  <Chart /> 
+                  {/* <Chart />  */}
+                  <div className={styles.mainContent}>
+          <h1 className={styles.welcomeMessage}>
+            Welcome, {buyerd ? buyerd.name : 'Buyer'}!
+          </h1>
+          <Chart />
+        </div>
               
               </div>
             </div>

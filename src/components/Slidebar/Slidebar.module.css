@@ -1,133 +1,37 @@
-.sidebar {
-    width: 40vw;
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    padding: 20px;
-    height: 90vh;
-  }
-  
-  .profileSection {
-    margin-bottom: 20px;
-  }
-  
-  .profileIcon {
-    background-color: #777;
-    border-radius: 50%;
-    padding: 10px;
-    text-align: center;
-    font-size: 18px;
-    color: white;
-  }
-  
-  .menu {
-    list-style: none;
-    padding: 0;
-    
-    min-width: 60px;
-  }
-  
-  .menuItem {
-    margin: 15px 0;
-    height: 10%;
-  
-    margin-bottom: 50px;
-  
-  }
-  
-  .button {
-    width: 260px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.461);
-    
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    color: black;
-    height: 60px;
-  display:flex;
-  justify-content: space-between;
-  align-items: center;
-    border-radius: 27px;
-    font-weight: bold;
-    gap: 10px;
+.sidebarContainer {
+  width: 250px;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-   
-  }
-  
-  .button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+.menuList {
+  list-style: none;
+  padding: 0;
+}
 
-  .Cmanage{
-    background-image: url(../../utils/images/contract.jpg);
-    height: 39px;
-    /* background-color: red; */
-    width: 39px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
-  }
-  .Security{
-    background-image: url(../../utils/images/2.png);
-    height: 39px;
-    /* background-color: red; */
-    width: 39px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
+.menuItem {
+  margin-bottom: 20px;
+}
 
-  }
-  .Fguide{
-    background-image: url(../../utils/images/3.png);
-    height: 44px;
-    /* background-color: red; */
-    width: 44px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode:color-burn;
-   
-  }
-  .search{
-    background-image: url(../../utils/images/5.png);
-    height: 39px;
-    /* background-color: red; */
-    width: 39px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
-  }
-  .CreateContract{
-    background-image: url(../../utils/images/pen.png);
-    height: 35px;
-    /* background-color: red; */
-    width: 35px;
-    background-size: contain;
-  
-      background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
-    
-    
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
-  }
-  .Orders{
-    background-image: url(../../utils/images/cart.jpg);
-    height: 49px;
-    /* background-color: red; */
-    width: 49px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
-  }
-  .History{
-    background-image: url(../../utils/images/history.png);
-    height: 32px;
-    /* background-color: red; */
-    width: 32px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: color-burn;
-  }
+.menuButton {
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #202020;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: #34c759;
+  transform: scale(1.05);
+}
