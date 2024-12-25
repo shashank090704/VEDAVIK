@@ -1,59 +1,31 @@
-/* .body{
-    background-color: white;
-    height: 100vh;
-    width: 100vw;
-    background-image: url(../utils/images/Background\ \(1\).png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-}
-.buttons{
-    height: 100%;
-    width: 40vw;
-    /* background-color: blue; */
-    /* position: absolute;
-   
+.dashboardContainer {
     display: flex;
-    display: inline-block;
-    justify-content: space-around;
-    align-items: center;
-}
-.butcon{
-    height: 100%;
-    width: 100%;
-    /* background-color: red; */
-    /* display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-}
-.button{
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    width: 50%;
-    height: 10%;
-    background-color: rgba(255,  255, 255, .6);
-    color: black;
-    border-radius: 30px;
-    display: inline;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #121212, #000);
+  }
   
-} */ 
-
-.appContainer {
+  .dashboardContent {
     display: flex;
-    height: 100vh;
-    background-image: url(../utils/images/vineyard-428041.jpg);
-
-    background-size: cover;
-    background-position: center;
+    flex: 1;
+    padding: 20px;
   }
   
   .mainContent {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin-left: 20px;
+    color: white;
   }
+  
+  .welcomeMessage {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #34c759;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 10px rgba(52, 199, 89, 0.5);
+  }
+  

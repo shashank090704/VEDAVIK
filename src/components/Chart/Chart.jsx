@@ -10,8 +10,8 @@ const data = {
   datasets: [
     {
       data: [45.3, 21.3, 28.7, 4.7],
-      backgroundColor: ['#9acd32', '#d3d3d3', '#ee82ee', '#87ceeb'],
-      hoverBackgroundColor: ['#7da527', '#a9a9a9', '#cd69cd', '#6495ed'],
+      backgroundColor: ['#34c759', '#ffcc00', '#007aff', '#ff3b30'],
+      hoverBackgroundColor: ['#28a745', '#e6b800', '#0056b3', '#cc3232'],
       borderWidth: 1,
     },
   ],

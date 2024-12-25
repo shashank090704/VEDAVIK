@@ -9,29 +9,27 @@ import{faClockRotateLeft}from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   return (
-    <div className={styles.sidebar}>
+    <div className={styles.sidebarContainer}>
       {/* <div className={styles.profileSection}>
         <div className={styles.profileIcon}>#A001</div>
       </div> */}
-      <ul className={styles.menu}>
+      <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-        <a href="/Createorder"><button className={styles.button}>Create Contract<div className={styles.CreateContract}></div></button></a>
+        <a href="/Createorder"><button className={styles.menuButton}>Create Contract</button></a>
         </li>
-        </ul>
-        <div className='others'>
-          <ul className={styles.menu}>
+        
         <li className={styles.menuItem}>
-          <button className={styles.button}>Contract Management <div className={styles.Cmanage}></div></button>
+          <button className={styles.menuButton}>Contract Management </button>
         </li>
         <li className={styles.menuItem}>
-         <a href='/Buyerorderlist'> <button className={styles.button}>Orders<div className={styles.Orders}></div></button> </a>
+         <a href='/Buyerorderlist'> <button className={styles.menuButton}>Orders</button> </a>
         </li>
         <li className={styles.menuItem}>
-          <button className={styles.button}>History<div className={styles.History}></div></button>
+          <button className={styles.menuButton}>History</button>
         </li>
       </ul>
       </div>
-    </div>
+    
   );
 };
 
