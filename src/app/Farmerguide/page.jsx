@@ -87,8 +87,10 @@ function Page() {
           Generate answer
         </button>
       </form>
-      <div className={styles.answerContainer}>
-        <ReactMarkdown className={styles.answer}>{answer}</ReactMarkdown>
+      <div   className={styles.answerContainer}>
+        {/* <ReactMarkdown className={styles.answer}>{answer}</ReactMarkdown> */}
+        {answer}
+        
       </div>
     </div>
     </>

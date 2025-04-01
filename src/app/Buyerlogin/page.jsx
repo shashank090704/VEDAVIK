@@ -415,6 +415,7 @@ function BuyerLoginPage() {
 
     try {
       setLoading(true);
+      console.log(formData)
       const res = await axios.post('/api/buyer/buyerlogin', formData);
 
       if (res.status === 200) {
