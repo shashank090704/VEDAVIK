@@ -1,0 +1,29 @@
+.bo{
+    width: 100vw;
+    height: 100vh;
+    /* overflow: hidden; */
+    scrollbar-width:none;
+    scroll-behavior: smooth;
+}
+.body{
+    height:100vh;
+    width:100vw;
+    background-image: url(../utils/images/FOLBackground.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    display:flex;
+    overflow-y: hidden;
+  
+    
+}
+.orderbox{
+    overflow-y:scroll;
+    margin-left: 40px;
+    scrollbar-width:none;
+    scroll-behavior: smooth;
+    height:90vh;
+    margin-top:50px;
+    
+    
+
+}
