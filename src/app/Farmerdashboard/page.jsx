@@ -1,4 +1,4 @@
-'use client'
+
 // import React, { useContext, useEffect, useState } from 'react'
 // import styles from '../../Stylesheet/farmer.module.css';
 // import Navbar from '@/components/Navbar/Navbar';
@@ -141,6 +141,7 @@ import Navbar from '@/components/Navbar/Navbar';
 import Sidebar from '@/components/Slidebar/Slidebar';
 import Chart from '@/components/Chart/Chart';
 import styles from './../../Stylesheet/farmer.module.css';
+import Order  from '../../components/ordercomponetforfarmer/Order'
 function FarmerDashboard() {
   const user = {
     name: "John Farmer",
@@ -148,6 +149,7 @@ function FarmerDashboard() {
   };
 
   const [farmData, setFarmData] = useState(null);
+  const[ orders , setOrders] = useState("");
   const logout = async () => {
     try {
       const res = await axios.post("/api/farmer/logout");
@@ -162,13 +164,45 @@ function FarmerDashboard() {
       try {
         const res = await axios.post('/api/farmer/getfarmerdata');
         setFarmData(res.data.data);
+        console.log(farmData);
+       
       } catch (err) {
         console.error('Error fetching farmer data:', err);
       }
     };
 
     getFarmerData();
+    getOrders()
+    
   }, []);
+  
+
+  useEffect(()=>{console.log(farmData )
+    console.log("HII")
+  },[farmData]);
+
+  const getOrders = async () => {
+    try {
+        const res = await axios.post('/api/farmer/getlistoforder');
+        console.log(res.data.orders)
+        setOrders(res.data.orders);
+    } catch (err) {
+        console.error("Error fetching orders:", err);
+        setError("Failed to fetch orders");
+    } finally {
+        setLoading(false);
+    }
+};
+
+// useEffect(() => {
+//     getOrders();
+   
+// }, []);
+
+// useEffect(()=>{
+//   console.log(farmData + "orferssxc")
+// },[farmData])
+
 
   const dashboardCards = [
     {
@@ -198,7 +232,7 @@ function FarmerDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 text-black " style={{scrollbarWidth :"none"}}>
       {/* Top Navigation */}
       <nav className="bg-white shadow-sm px-6 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-3">
@@ -206,7 +240,7 @@ function FarmerDashboard() {
           <span className="text-xl font-bold text-gray-800">Vrishti</span>
         </div>
         
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6 "  style={{scrollbarWidth :"none"}}>
           <button className="p-2 rounded-full hover:bg-gray-100">
             <Bell className="h-5 w-5 text-gray-600" />
           </button>
@@ -216,13 +250,13 @@ function FarmerDashboard() {
               <p className="text-xs text-gray-500">{farmData ? farmData.email : user.email}</p>
             </div>
             <button className="p-2 rounded-full hover:bg-gray-100">
-             <button onClick={logout}> <LogOut className="h-5 w-5 text-red-600" /> </button>
+             <div onClick={logout}> <LogOut className="h-5 w-5 text-red-600" /> </div>
             </button>
           </div>
         </div>
       </nav>
 
-      <div className="flex h-[calc(100vh-64px)]">
+      <div className="flex h-[calc(100vh-64px)]"   style={{scrollbarWidth :"none"}}>
         {/* Sidebar */}
         <aside className="w-64 bg-white shadow-sm p-4">
           <nav className="space-y-2">
@@ -246,7 +280,7 @@ function FarmerDashboard() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-6 overflow-y-auto"  style={{scrollbarWidth :"none"}}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {dashboardCards.map((card, index) => (
               <div key={index} className="bg-white rounded-xl shadow-sm p-6">
@@ -260,23 +294,70 @@ function FarmerDashboard() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+            <div className="bg-white rounded-xl shadow-sm p-6  ">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-800">Recent Contracts</h2>
-                <button className="text-green-600 hover:text-green-700 text-sm font-medium">View All</button>
+                <a href='/Farmerorderlist' className="text-green-600 hover:text-green-700 text-sm font-medium">View All</a>
               </div>
-              <div className="space-y-4">
-                {[1, 2, 3].map((_, index) => (
+              {/* <div className="space-y-4 text-black">
+                {/* {[1, 2, 3].map((_, index) => (
                   <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                     <div>
                       <p className="font-medium text-gray-800">Contract #{2023 + index}</p>
                       <p className="text-sm text-gray-500">Wheat Supply - 200 tons</p>
                     </div>
                     <ChevronRight className="h-5 w-5 text-gray-400" />
-                  </div>
-                ))}
-              </div>
+          m        </div>
+                ))} */}
+
+                {/* {orders ? (
+                  orders.map((ord)=>{
+                    <Order order={ord} farmerid={farmData._id}/>
+                  })
+                ):(<div> no order available</div>)}
+              </div> */} 
+
+              
+{/* <div className='max-h-100 overflow-y-scroll ' style={{scrollbarWidth : "none"}} >
+            <div >
+            {orders.length === 0 ? (
+                <div>No orders available</div>
+            ) : (
+                orders.map((order) => (
+                                 <Order order={order} tempfarmer={farmData._id} />
+                             
+                
+                ))         
+                   
+            )}  
+            </div>
+        </div> */}
+        
+<div className='max-h-100 overflow-y-scroll ' style={{scrollbarWidth : "none"}} >
+            <div >
+            {orders.length >  0 && farmData && farmData._id ? (
+
+orders.map((order) => (
+               
+                <Order order={order} farmerid={farmData._id} />
+              ))
+            ) : (
+                
+                   
+                             <div>
+                               <div>No orders available</div>
+                                    
+                                    {/* {console.log(order)}
+                                    {console.log(farmData._id)} */}
+                                    {/* <h1>{tempfarmer} hi</h1> */}
+                                    </div>
+)}
+                   
+                
+            
+            </div>
+        </div>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm p-6">
