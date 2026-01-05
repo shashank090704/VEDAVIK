@@ -195,13 +195,13 @@ export default function Page() {
     if (senderId && receiverId && senderdata && receiverdata) {
       Talk.ready.then(() => {
         const currentUser = new Talk.User({
-          id: senderId,
+          id: `user_${senderId}`,
           name: `${senderdata.name} (${senderdata.role})`,
           role: senderdata.role,
         });
 
         const otherUser = new Talk.User({
-          id: receiverId,
+          id: `user_${receiverId}` ,
           name: `${receiverdata.name} (${receiverdata.role})`,
           role: receiverdata.role,
         });
