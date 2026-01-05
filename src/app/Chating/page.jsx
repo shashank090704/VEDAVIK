@@ -191,37 +191,77 @@ export default function Page() {
   }, [senderId, receiverId, orderId]);
 
   // Initialize TalkJS when senderdata and receiverdata are available
+  // useEffect(() => {
+  //   if (senderId && receiverId && senderdata && receiverdata) {
+  //     Talk.ready.then(() => {
+  //       const currentUser = new Talk.User({
+  //         id: `user_${senderId}`,
+  //         name: `${senderdata.name} (${senderdata.role})`,
+  //         role: senderdata.role,
+  //       });
+
+  //       const otherUser = new Talk.User({
+  //         id: `user_${receiverId}` ,
+  //         name: `${receiverdata.name} (${receiverdata.role})`,
+  //         role: receiverdata.role,
+  //       });
+
+  //       const session = new Talk.Session({
+  //         appId: "t58oG5hk",
+  //         me: currentUser,
+  //       });
+
+  //       const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+  //       conversation.setParticipant(currentUser);
+  //       conversation.setParticipant(otherUser);
+
+  //       const chatbox = session.createChatbox(conversation);
+  //       chatbox.mount(chatboxEl.current);
+  //     }).catch((error) => {
+  //       console.error("Error with TalkJS initialization:", error);
+  //     });
+  //   }
+  // }, [senderId, receiverId, senderdata, receiverdata]);
   useEffect(() => {
-    if (senderId && receiverId && senderdata && receiverdata) {
-      Talk.ready.then(() => {
-        const currentUser = new Talk.User({
-          id: `user_${senderId}`,
-          name: `${senderdata.name} (${senderdata.role})`,
-          role: senderdata.role,
-        });
+  if (!senderId || !receiverId || !orderId) return;
+  if (!senderdata || !receiverdata) return;
+  if (senderId === receiverId) return;
 
-        const otherUser = new Talk.User({
-          id: `user_${receiverId}` ,
-          name: `${receiverdata.name} (${receiverdata.role})`,
-          role: receiverdata.role,
-        });
+  let session;
 
-        const session = new Talk.Session({
-          appId: "t58oG5hk",
-          me: currentUser,
-        });
+  Talk.ready.then(() => {
+    const me = new Talk.User({
+      id: `user_${senderId}`,
+      name: senderdata.name,
+      role: senderdata.role,
+    });
 
-        const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
-        conversation.setParticipant(currentUser);
-        conversation.setParticipant(otherUser);
+    const other = new Talk.User({
+      id: `user_${receiverId}`,
+      name: receiverdata.name,
+      role: receiverdata.role,
+    });
 
-        const chatbox = session.createChatbox(conversation);
-        chatbox.mount(chatboxEl.current);
-      }).catch((error) => {
-        console.error("Error with TalkJS initialization:", error);
-      });
-    }
-  }, [senderId, receiverId, senderdata, receiverdata]);
+    session = new Talk.Session({
+      appId: "t58oG5hk",
+      me,
+    });
+
+    const conversationId = `order_${orderId}_${me.id}_${other.id}`;
+
+    const conversation = session.getOrCreateConversation(conversationId);
+    conversation.setParticipant(me);
+    conversation.setParticipant(other);
+
+    const chatbox = session.createChatbox(conversation);
+    chatbox.mount(chatboxEl.current);
+  });
+
+  return () => {
+    session?.destroy();
+  };
+}, [senderId, receiverId, orderId, senderdata, receiverdata]);
+
 
   // Loading Screen Component
   if (pageLoading) {
