@@ -1,84 +1,4 @@
-// 'use client'
-// import React, { useState } from 'react';
-// import style from '../../Stylesheet/farmersignup.module.css'
-// import Link from 'next/link';
-// import signup from '../Farmersignup/page'
-// import axios from 'axios';
-// import { useRouter } from 'next/navigation';
-// function page(){
-//   const router = useRouter()
-//   const [formData, setFormData] = useState({
-   
-//     phone: '',
 
-//     password: ''
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value
-//     });
-//   };
-
-//   const handleSubmit = async(e) => {
-//     e.preventDefault();
-//     console.log('Form submitted:', formData);
-//    const  res = await axios.post('/api/farmer/farmerlogin' , formData)
-//     console.log(res);
-//     router.push("/Farmerdashboard");
-//     // Add form submission logic here
-//   };
-
-//   return (
-   
-//     <div className={style.bodyContainerDark}>
-//     <div className={style.leftContainerDark}></div>
-//     <div className={style.rightContainerDark}>
-//       <div className={style.loginFormContainerDark}>
-//     <h1 className={style.loginTitleDark}>Farmer Login</h1>
-//     <form onSubmit={handleSubmit}>
-
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
-//         <input
-//          className={style.formInputDark}
-//           type="text"
-//           id="phone"
-//           name="phone"
-//           value={formData.phone}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="password">Password:</label>
-//         <input
-//           className={style.formInputDark}
-//           type="password"
-//           id="password"
-//           name="password"
-//           value={formData.password}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <button
-//               className={style.submitButtonDark}
-//               type="submit"
-//             >
-//               Submit
-//             </button>
-//     </form>
-//     <Link className={style.signupLinkDark} href="../Farmersignup">Don't have an account ?</Link>
-//   </div>
-//   </div>
-//   </div>
-//   );
-// };
-
-// export default page;
 
 'use client'
 import React, { useState } from 'react';
@@ -86,12 +6,18 @@ import { Leaf, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-function page() {
+function Page() {
   const router = useRouter();
   const [userType, setUserType] = useState('farmer');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  
+  // State for loading (API call)
   const [loading, setLoading] = useState(false);
+  // State for redirecting (Success delay)
+  const [redirecting, setRedirecting] = useState(false);
+  // State for messages
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -102,6 +28,7 @@ function page() {
     }
 
     setLoading(true);
+    setMessage({ text: '', type: '' });
 
     try {
       const res = await axios.post('/api/farmer/farmerlogin', {
@@ -109,13 +36,30 @@ function page() {
         password,
       });
 
+      // --- Success Block ---
       console.log('Login success:', res.data);
-      router.push('/Farmerdashboard');
+      setLoading(false); // Stop loading spinner
+      setRedirecting(true); // Start redirect state
+      setMessage({ text: 'Login successful! Redirecting...', type: 'success' });
+      
+      // Wait 1.5 seconds so user sees the success message, then push
+      setTimeout(() => {
+        router.push('/Farmerdashboard');
+      }, 1500);
+
     } catch (error) {
+      // --- Error Block ---
       console.error('Login failed:', error);
-      alert('Invalid phone number or password. Please try again.');
-    } finally {
       setLoading(false);
+      
+      // specific check for 404 (User not found) from backend
+      if (error.response && error.response.status === 404) {
+        setMessage({ text: 'Account not found. Please Sign Up first.', type: 'error' });
+      } else if (error.response && error.response.status === 401) {
+        setMessage({ text: 'Invalid password.', type: 'error' });
+      } else {
+        setMessage({ text: 'Something went wrong. Please try again.', type: 'error' });
+      }
     }
   };
 
@@ -169,6 +113,7 @@ function page() {
           {/* User Type Selection */}
           <div className="grid grid-cols-2 gap-4 mb-6 text-black">
             <button
+              type="button"
               onClick={() => setUserType('farmer')}
               className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
                 userType === 'farmer'
@@ -181,8 +126,10 @@ function page() {
             </button>
             
             <button
-              onClick={() => {setUserType('buyer')
-                router.push('./Buyerlogin')
+              type="button"
+              onClick={() => {
+                setUserType('buyer');
+                router.push('./Buyerlogin');
               }}
               className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
                 userType === 'buyer'
@@ -237,14 +184,30 @@ function page() {
               </a>
             </div>
 
+            {/* Message Display Area */}
+            {message.text && (
+              <div className={`p-3 rounded-lg text-sm ${
+                message.type === 'success' 
+                  ? 'bg-green-50 text-green-700 border border-green-200' 
+                  : 'bg-red-50 text-red-700 border border-red-200'
+              }`}>
+                {message.text}
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
-              disabled={loading}
+              disabled={loading || redirecting}
+              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2 disabled:bg-green-400 disabled:cursor-not-allowed"
             >
-              {loading ? (
-                <span>Logging in...</span>
+              {redirecting ? (
+                // State 3: Redirecting (Success)
+                <span>Redirecting...</span>
+              ) : loading ? (
+                // State 2: Submitting (API Call)
+                <span>Submitting...</span>
               ) : (
+                // State 1: Default
                 <>
                   <span>Sign In</span>
                   <ArrowRight className="w-4 h-4" />
@@ -265,5 +228,4 @@ function page() {
   );
 }
 
-export default page;
-
+export default Page;

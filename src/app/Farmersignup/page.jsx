@@ -1,219 +1,20 @@
-// // src/LoginForm.js
-// 'use client'
-// import React, { useState } from 'react';
-// import style from '../../Stylesheet/farmersignup.module.css'
-// import Link from 'next/link';
-// import axios from 'axios';
-// import { Route } from 'react-router-dom';
-// import { useRouter } from 'next/navigation'
 
-// function page(){
-//   const router = useRouter();
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     phone: '',
-//     area: '',
-//     email: '',
-//     city: '',
-//     password: ''
-//   });
 
-//   const handleChange =  (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value
-//     });
-//   };
-
-//   const handleSubmit = async(e) => {
-//     e.preventDefault();
-//     console.log('Form submitted:', formData);
-//     const res =  await axios.post('/api/farmer/farmersignup' , formData);
-//     console.log( res);
-//     router.push("/Farmerlogin");
-//     // Add form submission logic here
-//   };
-
-//   return (
-//     // <div className={style.body}>
-//     // <div className={style.loginformcontainer}>
-//     //   <h1 style={{marginBottom : '20px'}}>Farmer Signup</h1>
-//     //   <form onSubmit={handleSubmit}>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="name">Name:</label>
-//     //       <input
-//     //         type="text"
-//     //         id="name"
-//     //         name="name"
-//     //         value={formData.name}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="phone">Phone Number:</label>
-//     //       <input
-//     //         type="text"
-//     //         id="phone"
-//     //         name="phone"
-//     //         value={formData.phone}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="area">Area of Farm:</label>
-//     //       <input
-//     //         type="text"
-//     //         id="area"
-//     //         name="area"
-//     //         value={formData.area}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="email">Email:</label>
-//     //       <input
-//     //         type="email"
-//     //         id="email"
-//     //         name="email"
-//     //         value={formData.email}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="city">City:</label>
-//     //       <input
-//     //         type="text"
-//     //         id="city"
-//     //         name="city"
-//     //         value={formData.city}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <div className={style.formgroup}>
-//     //       <label htmlFor="password">Password:</label>
-//     //       <input
-//     //         type="password"
-//     //         id="password"
-//     //         name="password"
-//     //         value={formData.password}
-//     //         onChange={handleChange}
-//     //         required
-//     //       />
-//     //     </div>
-//     //     <button style={{marginBottom:'7px'}} className={style.button} type="submit">Submit</button>
-//     //   </form>
-//     //   <Link href="../Farmerlogin">Already have an account ?</Link>
-//     // </div>
-//     // </div>
-//     <div className={style.bodyContainerDark}>
-//     <div className={style.leftContainerDark}></div>
-//     <div className={style.rightContainerDark}>
-//     <div className={style.loginFormContainerDark}>
-//     <h1 className={style.loginTitleDark}>Farmer Signup</h1>
-//     <form onSubmit={handleSubmit}>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="name">Name:</label>
-//         <input
-//         className={style.formInputDark}
-//           type="text"
-//           id="name"
-//           name="name"
-//           value={formData.name}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="phone">Phone Number:</label>
-//         <input
-//         className={style.formInputDark}
-//           type="text"
-//           id="phone"
-//           name="phone"
-//           value={formData.phone}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="area">Area of Farm:</label>
-//         <input
-//         className={style.formInputDark}
-//           type="text"
-//           id="area"
-//           name="area"
-//           value={formData.area}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="email">Email:</label>
-//         <input
-//         className={style.formInputDark}
-//           type="email"
-//           id="email"
-//           name="email"
-//           value={formData.email}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="city">City:</label>
-//         <input
-//         className={style.formInputDark}
-//           type="text"
-//           id="city"
-//           name="city"
-//           value={formData.city}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <div className={style.formGroupDark}>
-//         <label className={style.formLabelDark} htmlFor="password">Password:</label>
-//         <input
-//          className={style.formInputDark}
-//           type="password"
-//           id="password"
-//           name="password"
-//           value={formData.password}
-//           onChange={handleChange}
-//           required
-//         />
-//       </div>
-//       <button
-//               className={style.submitButtonDark}
-//               type="submit"
-//             >
-//               Submit
-//             </button>
-  
-//     </form>
-//     <Link className={style.signupLinkDark}  href="../Farmerlogin">Already have an account ?</Link>
-//   </div>
-//   </div>
-//   </div>
-//   );
-// };
-
-// export default page;
 "use client"
 import React, { useState } from 'react';
-import { Leaf, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Leaf, ShoppingBag, ArrowRight, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 function App() {
   const router = useRouter();
-  const [userType, setUserType] = useState('farmer' );
+  const [userType, setUserType] = useState('farmer');
+  
+  // Status States
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' }); // State for success/error messages
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -233,12 +34,35 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Reset states
+    setIsSubmitting(true);
+    setMessage({ type: '', text: '' });
+
     try {
       const res = await axios.post('/api/farmer/farmersignup', formData);
       console.log(res);
-      router.push('/Farmerlogin');
+      
+      // SUCCESS: Show congratulation message
+      setMessage({ type: 'success', text: 'Congratulations! Account created successfully.' });
+      setIsSubmitting(false);
+      setIsRedirecting(true);
+
+      // Wait 2 seconds so user can read the message before redirecting
+      setTimeout(() => {
+        router.push('/Farmerlogin');
+      }, 2000);
+
     } catch (error) {
       console.error('Signup failed:', error);
+      
+      // ERROR: Show error message
+      setIsSubmitting(false);
+      setIsRedirecting(false);
+      
+      // Extract error message from backend if available, otherwise use default
+      const errorMsg = error.response?.data?.message || 'An error occurred during signup. Please try again.';
+      setMessage({ type: 'error', text: errorMsg });
     }
   };
 
@@ -288,36 +112,39 @@ function App() {
         <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Sign up</h2>
 
-           <div className="grid grid-cols-2 gap-4 mb-6 text-black">
-                                <button
-                                  onClick={() =>{setUserType('farmer')
-                                    router.push('./Farmersignup')
-                                  }
-                                  }
-                                  className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
-                                    userType === 'farmer'
-                                      ? 'border-green-600 bg-green-50 text-green-700'
-                                      : 'border-gray-200 hover:border-green-400'
-                                  }`}
-                                >
-                                  <Leaf className="w-5 h-5" />
-                                  <span>Farmer</span>
-                                </button>
-                                
-                                <button
-                                  onClick={() => {setUserType('buyer')
-                                   router.push("./Buyersignup")
-                                  }}
-                                  className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
-                                    userType === 'buyer'
-                                      ? 'border-green-600 bg-green-50 text-green-700'
-                                      : 'border-gray-200 hover:border-green-400'
-                                  }`}
-                                >
-                                  <ShoppingBag className="w-5 h-5" />
-                                  <span>Buyer</span>
-                                </button>
-                              </div>
+            <div className="grid grid-cols-2 gap-4 mb-6 text-black">
+                <button
+                  type="button"
+                  onClick={() =>{
+                    setUserType('farmer')
+                    router.push('./Farmersignup')
+                  }}
+                  className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
+                    userType === 'farmer'
+                      ? 'border-green-600 bg-green-50 text-green-700'
+                      : 'border-gray-200 hover:border-green-400'
+                  }`}
+                >
+                  <Leaf className="w-5 h-5" />
+                  <span>Farmer</span>
+                </button>
+                
+                <button
+                  type="button"
+                  onClick={() => {
+                    setUserType('buyer')
+                    router.push("./Buyersignup")
+                  }}
+                  className={`flex items-center justify-center space-x-2 p-3 rounded-lg border-2 transition-all ${
+                    userType === 'buyer'
+                      ? 'border-green-600 bg-green-50 text-green-700'
+                      : 'border-gray-200 hover:border-green-400'
+                  }`}
+                >
+                  <ShoppingBag className="w-5 h-5" />
+                  <span>Buyer</span>
+                </button>
+              </div>
           
           <form className="space-y-4 text-black" onSubmit={handleSubmit}>
             <div>
@@ -330,7 +157,8 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter your name'
+                placeholder='Enter your name'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             <div>
@@ -343,7 +171,8 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter your phone number'
+                placeholder='Enter your phone number'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             <div>
@@ -356,7 +185,8 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter the area of the land'
+                placeholder='Enter the area of the land'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             <div>
@@ -369,7 +199,8 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter your city'
+                placeholder='Enter your city'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             <div>
@@ -382,7 +213,8 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter your email'
+                placeholder='Enter your email'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             <div>
@@ -395,14 +227,52 @@ function App() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 required
-                  placeholder='Enter your password'
-
+                placeholder='Enter your password'
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
-            <button type="submit" className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
-              <span>Sign Up</span>
-              <ArrowRight className="w-4 h-4" />
+
+            {/* Error/Success Message Display */}
+            {message.text && (
+              <div className={`p-3 rounded-lg flex items-center space-x-2 text-sm ${
+                message.type === 'success' 
+                  ? 'bg-green-100 text-green-800 border border-green-200' 
+                  : 'bg-red-100 text-red-800 border border-red-200'
+              }`}>
+                {message.type === 'success' ? (
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                ) : (
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                )}
+                <span>{message.text}</span>
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              disabled={isSubmitting || isRedirecting}
+              className={`w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2 
+                ${(isSubmitting || isRedirecting) ? 'opacity-70 cursor-not-allowed' : ''}
+              `}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Submitting...</span>
+                </>
+              ) : isRedirecting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Redirecting...</span>
+                </>
+              ) : (
+                <>
+                  <span>Sign Up</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </button>
+            
           </form>
           <p className="mt-4 text-center text-sm text-gray-600">
             Already have an account?{' '}
@@ -417,4 +287,6 @@ function App() {
 }
 
 export default App;
+
+
 

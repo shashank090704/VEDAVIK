@@ -4,6 +4,7 @@ export async function Getdatafrmtb(request) {
     try {
         const token = await request.cookies.get("buyertoken").value ||'';
         const decodedtoken = await jwt.verify(token , process.env.TOKEN_SECREAT);
+        console.log("decoded token in helper function" , decodedtoken);
         return decodedtoken.id;
     } catch (error) {
         throw new   Error(error.message);

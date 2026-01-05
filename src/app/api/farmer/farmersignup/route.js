@@ -10,8 +10,15 @@ export async function POST(request) {
         const { name , phone , area , email, city ,password } = reqbody;
        console.log(name);
 
+       
 
-        const farmer = await farmermodel.findOne({phonenumber : phone});
+
+        const farmer = await farmermodel.findOne({
+             $or: [
+        { email: email },
+        { phonenumber: phone }
+      ]
+        });
         if(farmer){
             console.log("farmer already present" , farmer)
             return NextResponse.json({error : 'user alredy exisy'}, {status : 400})
