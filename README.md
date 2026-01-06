@@ -409,7 +409,7 @@ VEDAVIK/
 
 ## 📧 Contact
 
-📧 Email: agrawalshashank51.com  
+📧 Email: agrawalshashank51@gmail.com  
 🐛 [Report Bug](https://github.com/shashank090704/VEDAVIK/issues)  
 💡 [Request Feature](https://github.com/shashank090704/VEDAVIK/issues)
 
