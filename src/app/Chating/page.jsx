@@ -183,7 +183,7 @@ export default function Page() {
 
   // Fetch messages when senderId and receiverId are available
   useEffect(() => {
-    if (senderId && receiverId) {
+    if (senderId && receiverId && orderId) {
       getInitialMessages();
     }
   }, [senderId, receiverId, orderId]);
