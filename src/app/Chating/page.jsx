@@ -171,7 +171,7 @@ export default function Page() {
 
   // Load stored data on mount
   useEffect(() => {
-    const storedData = localStorage.getItem('myData');
+    const storedData = sessionStorage.getItem('myData');
     if (storedData) {
       const myObject = JSON.parse(storedData);
       setSenderId(myObject.senderId);
