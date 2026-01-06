@@ -8,7 +8,7 @@
 
 ---
 
-## 🌟 What is Veda?
+## 🌟 What is Vedavik?
 
 Veda is a digital marketplace that **eliminates middlemen** and connects farmers directly with buyers. Get fair prices, transparent transactions, and direct communication - all in one platform.
 
@@ -409,7 +409,7 @@ VEDAVIK/
 
 ## 📧 Contact
 
-📧 Email: your-email@example.com  
+📧 Email: agrawalshashank51.com  
 🐛 [Report Bug](https://github.com/shashank090704/VEDAVIK/issues)  
 💡 [Request Feature](https://github.com/shashank090704/VEDAVIK/issues)
 
