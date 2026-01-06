@@ -9,7 +9,7 @@ export default function Page() {
   const chatboxEl = useRef();
   const router = useRouter();
 
-  // State Variables
+  // State Variables (unchanged naming)
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [senderId, setSenderId] = useState();
@@ -21,7 +21,6 @@ export default function Page() {
   const [isfarmer, setisfarmer] = useState();
   const [tempamt, settempamt] = useState();
   const [loading, setLoading] = useState(false);
-  const [pageLoading, setPageLoading] = useState(true); // New loading state
   const [paymentId, setPaymentId] = useState('');
   const [orderrId, setOrderrId] = useState('');
   const [signature, setSignature] = useState('');
@@ -130,11 +129,8 @@ export default function Page() {
       if (res.data.order?.productDetails) {
         setProductDetails(res.data.order.productDetails);
       }
-      
-      setPageLoading(false); // Stop loading after data is fetched
     } catch (error) {
       console.error("Error fetching initial messages", error);
-      setPageLoading(false); // Stop loading even on error
     }
   };
 
@@ -158,6 +154,8 @@ export default function Page() {
       alert("Failed to increase price. Please try again.");
     }
   };
+
+
 
   // Confirm the order
   const confirmOrder = async () => {
@@ -191,103 +189,37 @@ export default function Page() {
   }, [senderId, receiverId, orderId]);
 
   // Initialize TalkJS when senderdata and receiverdata are available
-  // useEffect(() => {
-  //   if (senderId && receiverId && senderdata && receiverdata) {
-  //     Talk.ready.then(() => {
-  //       const currentUser = new Talk.User({
-  //         id: `user_${senderId}`,
-  //         name: `${senderdata.name} (${senderdata.role})`,
-  //         role: senderdata.role,
-  //       });
-
-  //       const otherUser = new Talk.User({
-  //         id: `user_${receiverId}` ,
-  //         name: `${receiverdata.name} (${receiverdata.role})`,
-  //         role: receiverdata.role,
-  //       });
-
-  //       const session = new Talk.Session({
-  //         appId: "t58oG5hk",
-  //         me: currentUser,
-  //       });
-
-  //       const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
-  //       conversation.setParticipant(currentUser);
-  //       conversation.setParticipant(otherUser);
-
-  //       const chatbox = session.createChatbox(conversation);
-  //       chatbox.mount(chatboxEl.current);
-  //     }).catch((error) => {
-  //       console.error("Error with TalkJS initialization:", error);
-  //     });
-  //   }
-  // }, [senderId, receiverId, senderdata, receiverdata]);
   useEffect(() => {
-  if (!senderId || !receiverId || !orderId) return;
-  if (!senderdata || !receiverdata) return;
-  if (senderId === receiverId) return;
+    if (senderId && receiverId && senderdata && receiverdata) {
+      Talk.ready.then(() => {
+        const currentUser = new Talk.User({
+          id: senderId,
+          name: `${senderdata.name} (${senderdata.role})`,
+          role: senderdata.role,
+        });
 
-  let session;
+        const otherUser = new Talk.User({
+          id: receiverId,
+          name: `${receiverdata.name} (${receiverdata.role})`,
+          role: receiverdata.role,
+        });
 
-  Talk.ready.then(() => {
-    const me = new Talk.User({
-      id: `user_${senderId}`,
-      name: senderdata.name,
-      role: senderdata.role,
-    });
+        const session = new Talk.Session({
+          appId: "t58oG5hk",
+          me: currentUser,
+        });
 
-    const other = new Talk.User({
-      id: `user_${receiverId}`,
-      name: receiverdata.name,
-      role: receiverdata.role,
-    });
+        const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+        conversation.setParticipant(currentUser);
+        conversation.setParticipant(otherUser);
 
-    session = new Talk.Session({
-      appId: "t58oG5hk",
-      me,
-    });
-
-    const conversationId = `order_${orderId}_${me.id}_${other.id}`;
-
-    const conversation = session.getOrCreateConversation(conversationId);
-    conversation.setParticipant(me);
-    conversation.setParticipant(other);
-
-    const chatbox = session.createChatbox(conversation);
-    chatbox.mount(chatboxEl.current);
-  });
-
-  return () => {
-    session?.destroy();
-  };
-}, [senderId, receiverId, orderId, senderdata, receiverdata]);
-
-
-  // Loading Screen Component
-  if (pageLoading) {
-    return (
-      <div className="bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="relative w-24 h-24 mx-auto mb-6">
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-green-200 rounded-full"></div>
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-green-600 rounded-full border-t-transparent animate-spin"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-              </svg>
-            </div>
-          </div>
-          <h2 className="text-2xl font-bold text-green-800 mb-2">Loading Chat</h2>
-          <p className="text-green-600">Please wait while we fetch your conversation...</p>
-          <div className="mt-4 flex justify-center space-x-1">
-            <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        const chatbox = session.createChatbox(conversation);
+        chatbox.mount(chatboxEl.current);
+      }).catch((error) => {
+        console.error("Error with TalkJS initialization:", error);
+      });
+    }
+  }, [senderId, receiverId, senderdata, receiverdata]);
 
   return (
     <div className="bg-gray-100 min-h-screen py-6 px-4 sm:px-6">

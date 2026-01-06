@@ -42,6 +42,7 @@ function Order(props) {
         orderId: orderId, 
         isfarmer: "true" 
       }));
+      console.log("Data stored in sessionStorage" , tempFarmId , buyerId , orderId); ;
       router.push("/Chating");
     } catch (error) {
       console.error("Error navigating:", error);
