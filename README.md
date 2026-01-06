@@ -1,5 +1,5 @@
 # Vedavik 🌾
-> A Next.js marketplace connecting farmers directly with buyers. Eliminate middlemen, negotiate fair prices, and support sustainable agriculture.
+> A marketplace connecting farmers directly with buyers. Eliminate middlemen, negotiate fair prices, and support sustainable agriculture.
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47A248?logo=mongodb)
